@@ -20,51 +20,69 @@ function App() {
     // checks local storage to make sure that you have a token and that it hasn't expired. If so, it marks you as logged in.
     const [loggedIn, setLoggedIn] = useState((localStorage.getItem('token') && new Date(localStorage.getItem('expiration') > now ? true : false)))
 
+    console.log(localStorage.getItem('token'));
+    console.log(localStorage.getItem('expiration'));
+    
     // TODO: does this work
     const [currentUser, setCurrentUser] = useState(null)
 
-    useEffect(() => { // if the loggedIn state changes, it checks if there is a token that's in an acceptable time range, then sets the current user to that user
-        if (localStorage.getItem('token') && new Date(localStorage.getItem('expiration') > now)) {
-            var myHeaders = new Headers()
-            myHeaders.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
+    // useEffect(() => { // if the loggedIn state changes, it checks if there is a token that's in an acceptable time range, then sets the current user to that user
+    //     if (localStorage.getItem('token') && new Date(localStorage.getItem('expiration') > now)) { // surely if loggedIn is ever true, it will be because it has the token and that has not expired?
+    //         var myHeaders = new Headers()
+    //         myHeaders.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
 
-            fetch('https://kekambas-blog.herokuapp.com//auth/me', {
-                method: 'GET',
-                headers: myHeaders})
-                .then(res => res.json())
-                .then(data => {
-                    console.log('App useEffect', data, 'username', data.username);
-                    setCurrentUser(data.username)
-                })
-        } else { // if they are logged in but their token is expired, set current user to null and logout. (i hope this works)
-            setCurrentUser(null)
-            logout()
-        }
-    }, [loggedIn])
+    //         fetch('https://kekambas-blog.herokuapp.com//auth/me', {
+    //             method: 'GET',
+    //             headers: myHeaders})
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 console.log('App useEffect', data, 'username', data.username);
+    //                 setCurrentUser(data.username)
+    //             })
+    //     } else { // if they are logged in but their token is expired, set current user to null and logout. (i hope this works)
+    //         setCurrentUser(null)
+    //         logout()
+    //     }
+    // }, [loggedIn])
 
     const flashMessage = (message, category) => {
         setMessage(message)
         setCategory(category)
     }
 
-    const login = () => {setLoggedIn(true)}
+    const login = () => {
+        setLoggedIn(true);
+        var myHeaders = new Headers()
+        myHeaders.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
+
+        fetch('https://kekambas-blog.herokuapp.com//auth/me', {
+            method: 'GET',
+            headers: myHeaders})
+            .then(res => res.json())
+            .then(data => {
+                console.log('App useEffect', data, 'username', data.username);
+                setCurrentUser(data.username)
+            })
+    }
+    
     const logout = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('expiration')
         setLoggedIn(false)
+        setCurrentUser(null)
     }
 
     
 
     return (
         <>
-            <Navbar loggedIn={loggedIn} logout={logout} />
+            <Navbar loggedIn={loggedIn} logout={logout} currentUser={currentUser} />
             <div className="container">
                 <Routes> {/* !!! These routes are not visible to the user. The visible links are in Navbar.js !!! */}
                     {message ? <AlertMessage message={message} category={category} flashMessage={flashMessage} /> : null}
-                    <Route path='/' element={<Index />} />
-                    <Route path='/create-post' element={<CreatePost flashMessage={flashMessage} />} />
-                    <Route path='/login' element={<Login flashMessage={flashMessage} login={login} />} />
+                    <Route path='/' element={<Index loggedIn={loggedIn} />}/>
+                    <Route path='/create-post' element={<CreatePost flashMessage={flashMessage} loggedIn={loggedIn} />} />
+                    <Route path='/login' element={<Login flashMessage={flashMessage} login={login}/>} />
                     <Route path='/signup' element={<Signup flashMessage={flashMessage}/>} />
                 </Routes>
             </div>

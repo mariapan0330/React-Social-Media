@@ -1,7 +1,19 @@
 import React from 'react'
 
-export default function Navbar() {
+export default function Navbar(props) {
   return (
-    <div>Navbar</div>
+    <>
+    <nav className="navbar navbar-dark">
+        <div className="container-fluid">
+            <a className="navbar-brand ms-4" href="/">pssst</a>
+            {props.loggedIn ?
+            <button className='btn btn-outline-light' onClick={props.logout()}>Log Out</button>
+            :
+            <></>
+            // <a className="navbar-text nav-link me-4" href='/'>Not Logged In</a>
+            }
+        </div>
+    </nav>
+    </>
   )
 }
