@@ -22,7 +22,7 @@ function App() {
 
     console.log(localStorage.getItem('token'));
     console.log(localStorage.getItem('expiration'));
-    
+
     // TODO: does this work
     const [currentUser, setCurrentUser] = useState(null)
 
@@ -52,6 +52,7 @@ function App() {
 
     const login = () => {
         setLoggedIn(true);
+        console.log(loggedIn);
         var myHeaders = new Headers()
         myHeaders.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
 
@@ -73,13 +74,17 @@ function App() {
     }
 
     
+    useEffect(() => {
+        
+    })
+
 
     return (
         <>
             <Navbar loggedIn={loggedIn} logout={logout} currentUser={currentUser} />
             <div className="container">
+                {message ? <AlertMessage message={message} category={category} flashMessage={flashMessage} /> : null}
                 <Routes> {/* !!! These routes are not visible to the user. The visible links are in Navbar.js !!! */}
-                    {message ? <AlertMessage message={message} category={category} flashMessage={flashMessage} /> : null}
                     <Route path='/' element={<Index loggedIn={loggedIn} />}/>
                     <Route path='/create-post' element={<CreatePost flashMessage={flashMessage} loggedIn={loggedIn} />} />
                     <Route path='/login' element={<Login flashMessage={flashMessage} login={login}/>} />

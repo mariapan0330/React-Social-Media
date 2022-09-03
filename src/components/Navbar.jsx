@@ -9,7 +9,7 @@ export default function Navbar(props) {
             {props.loggedIn ?
             <button className='btn btn-outline-light' onClick={props.logout()}>Log Out</button>
             :
-            <></>
+            <>You are not logged in</>
             // <a className="navbar-text nav-link me-4" href='/'>Not Logged In</a>
             }
         </div>

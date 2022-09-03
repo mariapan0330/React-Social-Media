@@ -13,29 +13,57 @@ body {
     font-size: 40px;
 }
 
+.navbar-brand:hover {
+    /* color:rgb(58, 63, 49); */
+    /* font-weight: bold; */
+    text-shadow: 5px 5px rgb(58, 63, 49);
+}
+
+
+.alert {
+    margin-left: 55vw;
+}
+
+
+
 #mainPageButt1 { 
     /* This is the button on the main index */
     font-family: 'Special Elite', sans-serif;
     font-weight: bold;
     font-size: 60px;
     margin-top: 23vh;
+    border: 9px solid black;
+    background-color: rgb(237, 230, 220);
+    box-shadow: 15px 15px rgba(0, 0, 0, 0.9);
+}
+
+#mainPageButt1:hover {
+    border: 9px solid rgb(224, 216, 202);
+    color: rgb(224, 216, 202);
+    background-color:rgb(58, 63, 49);
 }
 
 #mainPageButt2 {
     font-family: 'Special Elite', sans-serif;
+    border: 5px solid rgb(224, 216, 202);
+    box-shadow: 15px 15px rgba(0,0,0,0.9);
 }
 
+#mainPageButt2:hover {
+    background-color:rgb(58, 63, 49);
+}
 
-#loginTitle {
+#formTitle {
     font-family: 'Special Elite', sans-serif;
 }
 
-#loginForm {
+#formForm {
     font-family: 'Special Elite', sans-serif;
     margin-left: 25vw;
     margin-right: 25vw;
 }
 
-.loginComponents {
+.formComponents {
     border: 5px solid black;
+    background-color: rgb(237, 230, 220);
 }
