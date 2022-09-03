@@ -16,7 +16,6 @@ export default function Login(props) {
         let password = e.target.password.value
 
         let myHeaders = new Headers()
-        // myHeaders.append('Authorization', `Basic bWFyaWE6bWFyMTIz`)
         myHeaders.append('Authorization', `Basic ${basicKey(username, password)}`)
 
         let response = await fetch('http://kekambas-blog.herokuapp.com//auth/token', {
