@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import basicKey from '../keys.js'
 
 export default function Login(props) {
     let navigate = useNavigate()
@@ -16,7 +17,7 @@ export default function Login(props) {
 
         let myHeaders = new Headers()
         // myHeaders.append('Authorization', `Basic bWFyaWE6bWFyMTIz`)
-        myHeaders.append('Authorization', `Basic ${btoa(`${username}:${password}`)}`)
+        myHeaders.append('Authorization', `Basic ${basicKey(username, password)}`)
 
         let response = await fetch('http://kekambas-blog.herokuapp.com//auth/token', {
             method: "POST",
