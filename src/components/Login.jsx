@@ -30,7 +30,7 @@ export default function Login(props) {
             localStorage.setItem('token', data.token)
             localStorage.setItem('expiration', data.token_expiration)
             
-            console.log('response is okay, token: ',localStorage.getItem('token'), 'expires:', localStorage.getItem('expiration'))
+            console.log('response is okay, token: ',localStorage.getItem('token'))
             props.login()
             props.flashMessage('You have successfully logged in!', 'success')
             navigate('/')

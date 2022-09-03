@@ -18,10 +18,10 @@ function App() {
     // loggedIn useState
     const now = new Date()
     // checks local storage to make sure that you have a token and that it hasn't expired. If so, it marks you as logged in.
-    const [loggedIn, setLoggedIn] = useState((localStorage.getItem('token') && new Date(localStorage.getItem('expiration') > now ? true : false)))
+    const [loggedIn, setLoggedIn] = useState((localStorage.getItem('token') !== null && new Date(localStorage.getItem('expiration') > now ? true : false)))
 
-    console.log(localStorage.getItem('token'));
-    console.log(localStorage.getItem('expiration'));
+    console.log('TOKEN: ',localStorage.getItem('token'));
+    console.log('EXPIRATION: ',localStorage.getItem('expiration'));
 
     // TODO: does this work
     const [currentUser, setCurrentUser] = useState(null)
@@ -52,7 +52,7 @@ function App() {
 
     const login = () => {
         setLoggedIn(true);
-        console.log(loggedIn);
+        console.log('logged in?: ',loggedIn);
         var myHeaders = new Headers()
         myHeaders.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
 
@@ -68,15 +68,16 @@ function App() {
     
     const logout = () => {
         localStorage.removeItem('token')
-        localStorage.removeItem('expiration')
+        console.log('logging out');
+        // localStorage.removeItem('expiration')
         setLoggedIn(false)
         setCurrentUser(null)
     }
 
     
     useEffect(() => {
-        
-    })
+        console.log('The state of login has changed.', loggedIn);
+    }, [loggedIn])
 
 
     return (
