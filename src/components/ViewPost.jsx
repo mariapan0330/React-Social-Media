@@ -18,6 +18,14 @@ export default function ViewPost(props) {
         )
     }
 
+    function handleEditButton(){
+        // TODO
+    }
+    
+    function handleDeleteButton(){
+        // TODO
+    }
+
     return (
         <>
             <div className="d-flex justify-content-center">
@@ -30,9 +38,21 @@ export default function ViewPost(props) {
                             <p className="card-text mb-2">{location.state.post.date_created}</p>
                         </div>
                         <p className="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{location.state.post.content}</p>
+                        {props.currentUser === location.state.post.author.username ? 
+                        <>
+                        <div className="d-flex justify-content-end">
+                            <p>{location.state.post.author.username}</p>
+                            <button className="btn card-text mb-2 fs-5" onClick={() => handleEditButton()}>Edit</button>
+                            <button className="btn card-text mb-2 fs-5" onClick={() => handleDeleteButton()}>Delete</button>
+                        </div>
+                        </>
+                        :
+                        <>
                         <div className="d-flex justify-content-end">
                             <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/user')}>{location.state.post.author.username}</button>
                         </div>
+                        </>
+                        }
                     </div>
                 </div>
             </div>

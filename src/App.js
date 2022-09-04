@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Navbar from './components/Navbar';
 import ViewPost from './components/ViewPost';
+import MyProfile from './components/MyProfile';
 
 function App() {
     // message useState: message is what will show up in the alerts. 
@@ -20,6 +21,7 @@ function App() {
     const now = new Date()
     // checks local storage to make sure that you have a token and that it hasn't expired. If so, it marks you as logged in.
     const [loggedIn, setLoggedIn] = useState((localStorage.getItem('token') !== null && new Date(localStorage.getItem('expiration') > now ? true : false)))
+    const [postId, setPostId] = useState(null)
 
     console.log('TOKEN: ',localStorage.getItem('token'));
     console.log('EXPIRATION: ',localStorage.getItem('expiration'));
@@ -69,8 +71,9 @@ function App() {
                 {message ? <AlertMessage message={message} category={category} flashMessage={flashMessage} /> : null}
                 <Routes> {/* !!! These routes are not visible to the user. The visible links are in Navbar.js !!! */}
                     <Route path='/' element={<Index loggedIn={loggedIn} />}/>
-                    <Route path='/view-post' element={<ViewPost flashMessage={flashMessage} loggedIn={loggedIn} />}/>
+                    <Route path='/view-post' element={<ViewPost flashMessage={flashMessage} loggedIn={loggedIn} postId={postId} currentUser={currentUser} />}/>
                     <Route path='/create-post' element={<CreatePost flashMessage={flashMessage} loggedIn={loggedIn} />} />
+                    <Route path='/my-profile' element={<MyProfile flashMessage={flashMessage} loggedIn={loggedIn}/>} />
                     <Route path='/login' element={<Login flashMessage={flashMessage} login={login}/>} />
                     <Route path='/signup' element={<Signup flashMessage={flashMessage}/>} />
                 </Routes>
