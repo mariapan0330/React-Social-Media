@@ -19,16 +19,14 @@ function App() {
     const [category, setCategory] = useState(null)
 
     // loggedIn useState
-    const now = new Date()
+    // const now = new Date()
     // checks local storage to make sure that you have a token and that it hasn't expired. If so, it marks you as logged in.
-    const [loggedIn, setLoggedIn] = useState((localStorage.getItem('token') !== null && new Date(localStorage.getItem('expiration') > now ? true : false)))
-    const [postId, setPostId] = useState(null)
+    const [loggedIn, setLoggedIn] = useState((localStorage.getItem('token') !== null ? true : false))
 
     console.log('TOKEN: ',localStorage.getItem('token'));
-    console.log('EXPIRATION: ',localStorage.getItem('expiration'));
 
-    // TODO: does this work
-    const [currentUser, setCurrentUser] = useState(null)
+    // TODO: why does currentUser reset when I reload the page, but loggedIn does not?
+    const [currentUser, setCurrentUser] = useState()
 
     const flashMessage = (message, category) => {
         setMessage(message)
@@ -61,7 +59,8 @@ function App() {
 
     
     useEffect(() => {
-        console.log('The state of login has changed.', loggedIn);
+        console.log('APP: The state of login has changed.', loggedIn);
+        console.log('APP: Current user: ', currentUser);
     }, [loggedIn])
 
 
@@ -72,7 +71,7 @@ function App() {
                 {message ? <AlertMessage message={message} category={category} flashMessage={flashMessage} /> : null}
                 <Routes> {/* !!! These routes are not visible to the user. The visible links are in Navbar.js !!! */}
                     <Route path='/' element={<Index loggedIn={loggedIn} currentUser={currentUser} />}/>
-                    <Route path='/view-post' element={<ViewPost flashMessage={flashMessage} loggedIn={loggedIn} postId={postId} currentUser={currentUser} />}/>
+                    <Route path='/view-post' element={<ViewPost flashMessage={flashMessage} loggedIn={loggedIn} currentUser={currentUser} />}/>
                     <Route path='/create-post' element={<CreatePost flashMessage={flashMessage} loggedIn={loggedIn} />} />
                     <Route path='/view-profile' element={<ViewProfile flashMessage={flashMessage} loggedIn={loggedIn}/>} />
                     <Route path='/my-profile' element={<MyProfile flashMessage={flashMessage} loggedIn={loggedIn}/>} />

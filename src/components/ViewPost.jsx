@@ -20,12 +20,15 @@ export default function ViewPost(props) {
 
     function handleEditButton(){
         // TODO
+        console.log('you tried to edit your post');
     }
     
     function handleDeleteButton(){
         // TODO
+        console.log('you tried to delete your post')
     }
 
+    console.log('current:', props.currentUser, 'location:', location.state.post.author.username);
     return (
         <>
             <div className="d-flex justify-content-center">
@@ -40,10 +43,9 @@ export default function ViewPost(props) {
                         <p className="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{location.state.post.content}</p>
                         {props.currentUser === location.state.post.author.username ? 
                         <>
-                        <div className="d-flex justify-content-end">
-                            <p>{location.state.post.author.username}</p>
-                            <button className="btn card-text mb-2 fs-5" onClick={() => handleEditButton()}>Edit</button>
-                            <button className="btn card-text mb-2 fs-5" onClick={() => handleDeleteButton()}>Delete</button>
+                        <div className="d-flex justify-content-end col">
+                                <button className="btn btn-dark card-text me-2 pt-2 fs-5" onClick={() => handleEditButton()}>Edit</button>
+                                <button className="btn btn-outline-dark card-text pt-2 fs-5" onClick={() => handleDeleteButton()}>Delete</button>
                         </div>
                         </>
                         :
