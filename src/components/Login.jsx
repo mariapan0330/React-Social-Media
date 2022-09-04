@@ -10,8 +10,8 @@ export default function Login(props) {
         console.log('You tried to log in.');
         console.log(e);
 
-        // TODO: on submit, make a get request to the API to get a new token
-        // It will use a token which you can only get if you're already a user in the db??
+        // On submit, make a get request to the API to get a new token
+        // which you can only get if you're already a user in the db
         let username = e.target.username.value
         let password = e.target.password.value
 

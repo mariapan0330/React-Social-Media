@@ -7,6 +7,7 @@ import Index from './components/Index';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Navbar from './components/Navbar';
+import ViewPost from './components/ViewPost';
 
 function App() {
     // message useState: message is what will show up in the alerts. 
@@ -25,25 +26,6 @@ function App() {
 
     // TODO: does this work
     const [currentUser, setCurrentUser] = useState(null)
-
-    // useEffect(() => { // if the loggedIn state changes, it checks if there is a token that's in an acceptable time range, then sets the current user to that user
-    //     if (localStorage.getItem('token') && new Date(localStorage.getItem('expiration') > now)) { // surely if loggedIn is ever true, it will be because it has the token and that has not expired?
-    //         var myHeaders = new Headers()
-    //         myHeaders.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
-
-    //         fetch('https://kekambas-blog.herokuapp.com//auth/me', {
-    //             method: 'GET',
-    //             headers: myHeaders})
-    //             .then(res => res.json())
-    //             .then(data => {
-    //                 console.log('App useEffect', data, 'username', data.username);
-    //                 setCurrentUser(data.username)
-    //             })
-    //     } else { // if they are logged in but their token is expired, set current user to null and logout. (i hope this works)
-    //         setCurrentUser(null)
-    //         logout()
-    //     }
-    // }, [loggedIn])
 
     const flashMessage = (message, category) => {
         setMessage(message)
@@ -87,6 +69,7 @@ function App() {
                 {message ? <AlertMessage message={message} category={category} flashMessage={flashMessage} /> : null}
                 <Routes> {/* !!! These routes are not visible to the user. The visible links are in Navbar.js !!! */}
                     <Route path='/' element={<Index loggedIn={loggedIn} />}/>
+                    <Route path='/view-post' element={<ViewPost flashMessage={flashMessage} loggedIn={loggedIn} />}/>
                     <Route path='/create-post' element={<CreatePost flashMessage={flashMessage} loggedIn={loggedIn} />} />
                     <Route path='/login' element={<Login flashMessage={flashMessage} login={login}/>} />
                     <Route path='/signup' element={<Signup flashMessage={flashMessage}/>} />
