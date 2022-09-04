@@ -17,7 +17,6 @@ export default function Index(props) {
             })
     }, []) // blank [] at the end makes it run only once
 
-        
     // console.log('Index Data: POSTS',posts);
     return (
         <>
@@ -38,7 +37,13 @@ export default function Index(props) {
                                         </div>
                                         <p className="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{post.content}</p>
                                         <div className="d-flex justify-content-end">
+                                            {post.author.username === props.currentUser ? 
+                                            <>
+                                            <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/user')}>{post.author.username} (You!)</button>
+                                            </>
+                                            :
                                             <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/user')}>{post.author.username}</button>
+                                        }
                                         </div>
                                     </div>
                                 </div>

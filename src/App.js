@@ -9,6 +9,7 @@ import Signup from './components/Signup';
 import Navbar from './components/Navbar';
 import ViewPost from './components/ViewPost';
 import MyProfile from './components/MyProfile';
+import ViewProfile from './components/ViewProfile';
 
 function App() {
     // message useState: message is what will show up in the alerts. 
@@ -70,9 +71,10 @@ function App() {
             <div className="container">
                 {message ? <AlertMessage message={message} category={category} flashMessage={flashMessage} /> : null}
                 <Routes> {/* !!! These routes are not visible to the user. The visible links are in Navbar.js !!! */}
-                    <Route path='/' element={<Index loggedIn={loggedIn} />}/>
+                    <Route path='/' element={<Index loggedIn={loggedIn} currentUser={currentUser} />}/>
                     <Route path='/view-post' element={<ViewPost flashMessage={flashMessage} loggedIn={loggedIn} postId={postId} currentUser={currentUser} />}/>
                     <Route path='/create-post' element={<CreatePost flashMessage={flashMessage} loggedIn={loggedIn} />} />
+                    <Route path='/view-profile' element={<ViewProfile flashMessage={flashMessage} loggedIn={loggedIn}/>} />
                     <Route path='/my-profile' element={<MyProfile flashMessage={flashMessage} loggedIn={loggedIn}/>} />
                     <Route path='/login' element={<Login flashMessage={flashMessage} login={login}/>} />
                     <Route path='/signup' element={<Signup flashMessage={flashMessage}/>} />

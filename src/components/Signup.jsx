@@ -42,16 +42,16 @@ export default function Signup(props) {
 
     return (
         <>
-        <h1 className='text-center text-light mb-3 fs-1' id='formTitle'>Sign Up</h1>
-        <form id='formForm' onSubmit={handleSubmit}>
-                <input type="email" className="formComponents form-control fs-3 py-3 px-4 mb-4" placeholder="Email" name='email' />
-                <input type="username" className="formComponents form-control fs-3 py-3 px-4 mb-4" placeholder="Username" name='username' />
-                <input type="password" className="formComponents form-control fs-3 py-3 px-4 mb-4" placeholder="Password" name='password'/>
-                <input type="password" className="formComponents form-control fs-3 py-3 px-4 mb-4" placeholder="Confirm Password" name='confirmPassword'/>
-            <div className="d-flex justify-content-center">
-                <button type="submit" className="btn btn-dark fs-4 py-3 px-4" id='submitSignup'>Submit</button>
-            </div>
-        </form>
+            <h1 className='text-center text-light mb-3 fs-1' id='formTitle'>Sign Up</h1>
+            <form id='formForm' onSubmit={handleSubmit}>
+                    <input type="email" className="formComponents form-control fs-3 py-3 px-4 mb-4" placeholder="Email" name='email' />
+                    <input type="username" className="formComponents form-control fs-3 py-3 px-4 mb-4" placeholder="Username" name='username' />
+                    <input type="password" className="formComponents form-control fs-3 py-3 px-4 mb-4" placeholder="Password" name='password'/>
+                    <input type="password" className="formComponents form-control fs-3 py-3 px-4 mb-4" placeholder="Confirm Password" name='confirmPassword'/>
+                <div className="d-flex justify-content-center">
+                    <button type="submit" className="btn btn-dark fs-4 py-3 px-4" id='submitSignup'>Submit</button>
+                </div>
+            </form>
         </>
     )
 }

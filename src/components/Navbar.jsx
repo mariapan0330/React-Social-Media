@@ -13,8 +13,8 @@ export default function Navbar(props) {
                     <a className="navbar-brand ms-4" href="/">pssst</a>
                     <div>{/* This is all at the right end of the nav bar. */}
                         <button className='btn btn-light me-3 fs-4' onClick={() => navigate('/create-post')}><i className="fa-solid fa-plus" /></button>
-                        {/* <button className='nav-logout btn btn-outline-light me-3' onClick={() => props.logout()}>Log Out</button> */}
                         <button className='btn btn-light me-3 fs-4' onClick={() => navigate('/my-profile')}><i className="fa-solid fa-user"></i></button>
+                        <button className='btn btn-light me-3 fs-4' onClick={() => props.logout()}><i className="fa-solid fa-right-from-bracket"></i></button>
                     </div>
 
                 </div>
