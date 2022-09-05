@@ -26,27 +26,32 @@ function App() {
     console.log('TOKEN: ',localStorage.getItem('token'));
 
     // TODO: why does currentUser reset when I reload the page, but loggedIn does not?
-    const [currentUser, setCurrentUser] = useState()
-
+    
     const flashMessage = (message, category) => {
         setMessage(message)
         setCategory(category)
     }
 
-    const login = () => {
-        setLoggedIn(true);
-        console.log('logged in?: ',loggedIn);
+    const findCurrentUser = () => {
         var myHeaders = new Headers()
         myHeaders.append('Authorization',`Bearer ${localStorage.getItem('token')}`)
-
+        
         fetch('https://kekambas-blog.herokuapp.com//auth/me', {
             method: 'GET',
             headers: myHeaders})
             .then(res => res.json())
             .then(data => {
-                console.log('App useEffect', data, 'username', data.username);
+                // console.log('App useEffect', data, 'username', data.username);
                 setCurrentUser(data.username)
             })
+    }
+    const [currentUser, setCurrentUser] = useState(findCurrentUser())
+
+
+    const login = () => {
+        setLoggedIn(true);
+        console.log('logged in?: ',loggedIn);
+        findCurrentUser()
     }
     
     const logout = () => {

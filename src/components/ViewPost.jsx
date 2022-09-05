@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 //////////////////////
@@ -28,7 +29,7 @@ export default function ViewPost(props) {
         console.log('you tried to delete your post')
     }
 
-    console.log('current:', props.currentUser, 'location:', location.state.post.author.username);
+
     return (
         <>
             <div className="d-flex justify-content-center">
