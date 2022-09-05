@@ -20,13 +20,28 @@ export default function ViewPost(props) {
     }
 
     function handleEditButton(){
-        // TODO
-        console.log('you tried to edit your post');
+        console.log('CLICKED: edit post');
+        navigate('/edit-post')
     }
     
     function handleDeleteButton(){
-        // TODO
-        console.log('you tried to delete your post')
+        // DELETE BUTTON
+        console.log("CLICKED: delete post");
+        var myHeaders = new Headers
+        myHeaders.append('Authorization', `Bearer ${localStorage.getItem('token')}`)
+
+        fetch(`https://kekambas-blog.herokuapp.com//blog/posts/${location.state.post.id}`, {
+            method: 'DELETE',
+            headers: myHeaders
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('post successfully deleted')
+                if (!data.error){
+                    props.flashMessage("Post successfully deleted.", 'success')
+                    navigate('/')
+                }
+            })
     }
 
 

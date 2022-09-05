@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Navbar from './components/Navbar';
 import ViewPost from './components/ViewPost';
+import EditPost from './components/EditPost';
 import MyProfile from './components/MyProfile';
 import ViewProfile from './components/ViewProfile';
 
@@ -78,6 +79,7 @@ function App() {
                     <Route path='/' element={<Index loggedIn={loggedIn} currentUser={currentUser} />}/>
                     <Route path='/view-post' element={<ViewPost flashMessage={flashMessage} loggedIn={loggedIn} currentUser={currentUser} />}/>
                     <Route path='/create-post' element={<CreatePost flashMessage={flashMessage} loggedIn={loggedIn} />} />
+                    <Route path='/edit-post' element={<EditPost flashMessage={flashMessage} loggedIn={loggedIn} currentUser={currentUser} />} />
                     <Route path='/view-profile' element={<ViewProfile flashMessage={flashMessage} loggedIn={loggedIn}/>} />
                     <Route path='/my-profile' element={<MyProfile flashMessage={flashMessage} loggedIn={loggedIn}/>} />
                     <Route path='/login' element={<Login flashMessage={flashMessage} login={login}/>} />
