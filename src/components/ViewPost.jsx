@@ -21,7 +21,7 @@ export default function ViewPost(props) {
 
     function handleEditButton(){
         console.log('CLICKED: edit post');
-        navigate('/edit-post')
+        navigate('/edit-post', {state:{post: location.state.post}})
     }
     
     function handleDeleteButton(){
