@@ -80,7 +80,15 @@ export default function ViewProfile(props) {
                                         <div className="d-flex justify-content-end">
                                             <p className="card-text mb-2">{post.date_created}</p>
                                         </div>
-                                        <p className="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{post.content}</p>
+                                        {post.content.slice(0,5) === 'https' && post.content.slice(-3,post.content.length) === 'jpg' ?
+                                            <>
+                                            <div className="d-flex justify-content-center">
+                                                <img src={post.content}></img>
+                                            </div>
+                                            </>
+                                            :
+                                            <p className="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{post.content}</p>
+                                        }
                                         <div className="d-flex justify-content-end">
                                             {post.author.username === props.currentUser ? 
                                                 <>
