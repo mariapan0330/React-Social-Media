@@ -8,6 +8,7 @@ export default function ViewProfile(props) {
     // const [modal, setModal] = useState(<></>)
     // const [username, setUsername] = useState(location.state.user)
     let username = location.state.user
+    let email = location.state.email
     const [posts, setPosts] = useState([])
 
     
@@ -57,6 +58,7 @@ export default function ViewProfile(props) {
                     <div className="card-body text-center">
                         <h1 className="card-title pt-4"><i className="fa-solid fa-user" /></h1>
                         <h2 className="card-text">{username}</h2>
+                        <h5 className="card-text">{email}</h5>
                     </div>
                 </div>
             </div>
@@ -85,7 +87,7 @@ export default function ViewProfile(props) {
                                                 <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/my-profile')}>{post.author.username} (You!)</button>
                                                 </>
                                                 :
-                                                <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/user')}>{post.author.username}</button>
+                                                <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/view-profile', {state:{user:post.author.username, email:post.author.email}})}>{post.author.username}</button>
                                             }
                                         </div>
                                     </div>
