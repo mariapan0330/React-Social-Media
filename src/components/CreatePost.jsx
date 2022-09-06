@@ -45,9 +45,8 @@ export default function CreatePost(props) {
                 </div>
             </form>
         </>
-        )}
-        
-    return (
-        <div>You can't do that because you're not logged in.</div>
-    )
+    )} else {
+        props.flashMessage('You can\'t do that because you\'re not logged in.','danger')
+        navigate('/')
+    }
 }

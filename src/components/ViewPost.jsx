@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 //////////////////////
@@ -9,6 +9,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 export default function ViewPost(props) {
     const location = useLocation(); // takes state arguements from whatever used useNavigate to get here
     const navigate = useNavigate();
+
+    useEffect(() => {}, [props.modalFunction])
 
     if (props.loggedIn === false) {
         return (
@@ -24,10 +26,13 @@ export default function ViewPost(props) {
         navigate('/edit-post', {state:{post: location.state.post}})
     }
     
-    function handleDeleteButton(){
-        // DELETE BUTTON
-        console.log("CLICKED: delete post");
-        var myHeaders = new Headers
+    // function handleDeleteButton(){
+    //     console.log("CLICKED: delete post");
+    //     // props.flashModal('this post', 'This action cannot be undone.', deletePost)
+    // }
+
+    function deletePost() {
+        var myHeaders = new Headers();
         myHeaders.append('Authorization', `Bearer ${localStorage.getItem('token')}`)
 
         fetch(`https://kekambas-blog.herokuapp.com//blog/posts/${location.state.post.id}`, {
@@ -61,7 +66,7 @@ export default function ViewPost(props) {
                         <>
                         <div className="d-flex justify-content-end col">
                                 <button className="btn btn-dark card-text me-2 pt-2 fs-5" onClick={() => handleEditButton()}>Edit</button>
-                                <button className="btn btn-outline-dark card-text pt-2 fs-5" onClick={() => handleDeleteButton()}>Delete</button>
+                                <button className="btn btn-outline-dark card-text pt-2 fs-5" onClick={() => deletePost()}>Delete</button>
                         </div>
                         </>
                         :

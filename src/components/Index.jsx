@@ -30,7 +30,10 @@ export default function Index(props) {
                                 <div className="card mb-5 p-5 fs-5" id='index-card'>
                                     <div className="card-body">
                                         <div className="d-flex justify-content-center">
-                                            <button className="post-title btn card-text text-center fs-5" onClick={() => navigate('/view-post',{state:{post:post}})}>{post.title}</button>
+                                            <button className="post-title btn card-text text-center fs-5" onClick={() =>{
+                                                // post.setCurrPostId(post.id)
+                                                navigate('/view-post',{state:{post:post}})
+                                        }}>{post.title}</button>
                                         </div>
                                         <div className="d-flex justify-content-end">
                                             <p className="card-text mb-2">{post.date_created}</p>
@@ -38,12 +41,12 @@ export default function Index(props) {
                                         <p className="card-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{post.content}</p>
                                         <div className="d-flex justify-content-end">
                                             {post.author.username === props.currentUser ? 
-                                            <>
-                                            <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/my-profile')}>{post.author.username} (You!)</button>
-                                            </>
-                                            :
-                                            <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/user')}>{post.author.username}</button>
-                                        }
+                                                <>
+                                                <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/my-profile')}>{post.author.username} (You!)</button>
+                                                </>
+                                                :
+                                                <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/user')}>{post.author.username}</button>
+                                            }
                                         </div>
                                     </div>
                                 </div>

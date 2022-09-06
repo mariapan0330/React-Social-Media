@@ -47,9 +47,8 @@ export default function EditPost(props) {
                 </div>
             </form>
         </>
-        )}
-        
-    return (
-        <div>You can't do that because you're not logged in.</div>
-    )
+    )} else {
+        navigate('/')
+        props.flashMessage('You can\'t do that because you\'re not logged in.', 'danger')
+    }
 }
