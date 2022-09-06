@@ -45,7 +45,7 @@ export default function Index(props) {
                                                 <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/my-profile')}>{post.author.username} (You!)</button>
                                                 </>
                                                 :
-                                                <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/user')}>{post.author.username}</button>
+                                                <button className="post-author btn card-text mb-2 fs-5" onClick={() => navigate('/view-profile', {state:{user:post.author.username}})}>{post.author.username}</button>
                                             }
                                         </div>
                                     </div>

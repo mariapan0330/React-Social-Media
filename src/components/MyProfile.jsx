@@ -5,9 +5,11 @@ export default function MyProfile(props) {
     let navigate = useNavigate()
 
     // const [modal, setModal] = useState(<></>)
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState(<></>)
+    const [showUserEdit, setShowUserEdit] = useState(<i className="fa-sharp fa-solid fa-pencil" />)
+    // const [showEmailEdit, setShowEmailEdit] = useState(<i className="fa-sharp fa-solid fa-pencil" />)
     const [email, setEmail] = useState(<></>)
-    const [posts,setPosts] = useState([])
+    const [posts, setPosts] = useState([])
 
     
     useEffect(() => {
@@ -59,10 +61,17 @@ export default function MyProfile(props) {
                 <div className="profile-card card mt-5">
                     <div className="card-body text-center">
                         <h1 className="card-title pt-4"><i className="fa-solid fa-user" /></h1>
-                        <h2 className="card-text">{username} 
-                        <button className="btn"><i className="fa-sharp fa-solid fa-pencil" /></button></h2>
-                        <h5 className="card-text">{email}
-                        <button className="btn"><i className="fa-sharp fa-solid fa-pencil" /></button></h5>
+                        <h2 className="card-text">{username} &nbsp;
+                            {/* <span className='edit-pencil fs-4' onClick={() => {
+                                setShowUserEdit(<span/>)
+                                setUsername(
+                                    <form onSubmit={editUsername} className="d-flex justify-content-center">
+                                        <input type="text" className="form-control fs-5 w-50" placeholder="username" name='username' value={username} onChange={(e) => setUsername(e.target.value)} />
+                                        <span type="submit" className="edit-pencil" id='submitUsername'><i className="fa-sharp fa-solid fa-pencil" /></span>
+                                    </form>
+                                )}}>{showUserEdit}</span> */}
+                        </h2>
+                        <h5 className="card-text">{email}</h5>
                         <br></br>
                         <button className="btn btn-dark mb-2" onClick={() => props.logout()}>Logout &nbsp;&nbsp;<i className="fa-solid fa-right-from-bracket fs-5 pt-1" /></button>
                         {/* <button className='btn btn-light me-3 fs-4' onClick={() => props.logout()}><i className="fa-solid fa-right-from-bracket"></i></button> */}

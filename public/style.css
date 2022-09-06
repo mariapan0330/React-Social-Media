@@ -117,11 +117,9 @@ body {
 /*            */
 /**************/
 
-.profile-col {
-    /* border: 2px dashed red; */
-    /* color:white; */
-    /* position:absolute; */
-    /* TODO: how to make it not scroll when i scroll? */
+.edit-pencil:hover {
+    text-shadow: 2px 2px 3px rgba(34, 34, 34, 0.591);
+    cursor: pointer;
 }
 
 .profile-card {
